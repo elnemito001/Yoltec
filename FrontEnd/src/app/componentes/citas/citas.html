@@ -1,0 +1,126 @@
+<section class="citas-container">
+  <div class="panel formulario">
+    <h2>Agendar nueva cita</h2>
+
+    <form (ngSubmit)="agendarCita()" class="form-grid">
+      <div class="campo">
+        <label for="fecha">Fecha</label>
+        <input
+          type="date"
+          id="fecha"
+          name="fecha"
+          [(ngModel)]="formulario.fecha_cita"
+          required
+        />
+      </div>
+
+      <div class="campo">
+        <label for="hora">Hora</label>
+        <input
+          type="time"
+          id="hora"
+          name="hora"
+          [(ngModel)]="formulario.hora_cita"
+          required
+        />
+      </div>
+
+      <div class="campo campo-completo">
+        <label for="motivo">Motivo (opcional)</label>
+        <textarea
+          id="motivo"
+          name="motivo"
+          rows="3"
+          [(ngModel)]="formulario.motivo"
+          placeholder="Describe brevemente el motivo de tu cita"
+        ></textarea>
+      </div>
+
+      <div class="acciones">
+        <button type="submit" [disabled]="creando">
+          {{ creando ? 'Agendando...' : 'Agendar cita' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="panel listado">
+    <header class="encabezado-listado">
+      <h2>Historial de citas</h2>
+      <div class="leyenda-rol" *ngIf="auth.currentUser() as usuario">
+        <span class="chip">{{ usuario.tipo | titlecase }}</span>
+        <button type="button" class="recargar" (click)="cargarCitas()" [disabled]="cargando">
+          {{ cargando ? 'Actualizando...' : 'Actualizar' }}
+        </button>
+      </div>
+    </header>
+
+    <div class="mensajes" role="status" aria-live="polite">
+      <p class="info" *ngIf="cargando">Cargando citas...</p>
+      <p class="ok" *ngIf="mensaje && !cargando">{{ mensaje }}</p>
+      <p class="error" *ngIf="error && !cargando">{{ error }}</p>
+    </div>
+
+    <div *ngIf="!cargando && citas.length > 0" class="tabla-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Clave</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estado</th>
+            <th>Alumno</th>
+            <th>Doctor</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cita of citas">
+            <td>{{ cita.clave_cita }}</td>
+            <td>{{ cita.fecha_cita | date:'mediumDate' }}</td>
+            <td>{{ cita.hora_cita }}</td>
+            <td>
+              <span class="chip" [ngClass]="cita.estatus">{{ cita.estatus | titlecase }}</span>
+            </td>
+            <td>
+              <span *ngIf="cita.alumno; else sinAlumno">
+                {{ cita.alumno?.nombre }} {{ cita.alumno?.apellido }}
+              </span>
+              <ng-template #sinAlumno>—</ng-template>
+            </td>
+            <td>
+              <span *ngIf="cita.doctor; else sinDoctor">
+                {{ cita.doctor?.nombre }} {{ cita.doctor?.apellido }}
+              </span>
+              <ng-template #sinDoctor>Por asignar</ng-template>
+            </td>
+            <td class="acciones">
+              <button
+                type="button"
+                class="accion cancelar"
+                *ngIf="puedeCancelar(cita)"
+                (click)="cancelarCita(cita)"
+                [disabled]="cancelandoId === cita.id"
+              >
+                {{ cancelandoId === cita.id ? 'Cancelando...' : 'Cancelar' }}
+              </button>
+              <button
+                type="button"
+                class="accion atender"
+                *ngIf="puedeAtender(cita)"
+                (click)="atenderCita(cita)"
+                [disabled]="cancelandoId === cita.id"
+              >
+                {{ cancelandoId === cita.id ? 'Actualizando...' : 'Marcar como atendida' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sin-datos" *ngIf="!cargando && citas.length === 0 && !error">
+      <p>Aún no hay citas registradas.</p>
+    </div>
+  </div>
+</section>

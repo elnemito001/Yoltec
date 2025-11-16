@@ -1,0 +1,117 @@
+/* ================================
+   ESTILOS GENERALES
+   ================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #0a0a0f;
+    /* Negro azulado oscuro */
+    color: #e0f7fa;
+    /* Cian claro */
+    line-height: 1.6;
+}
+
+/* ================================
+   ENCABEZADO / NAVBAR
+   ================================ */
+header {
+    background: linear-gradient(90deg, #001f3f, #003366);
+    /* Azul oscuro degradado */
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    color: #00e5ff;
+    /* Cian brillante */
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #66ffff;
+    /* Cian más claro al pasar */
+}
+
+/* ================================
+   SECCIONES
+   ================================ */
+section {
+    padding: 4rem 10%;
+    border-bottom: 1px solid #003366;
+    /* Azul oscuro */
+}
+
+h1,
+h2,
+h3 {
+    color: #00bcd4;
+    /* Cian medio */
+    margin-bottom: 1rem;
+}
+
+p {
+    color: #b2ebf2;
+    /* Gris azulado */
+    max-width: 700px;
+}
+
+/* ================================
+   BOTONES
+   ================================ */
+button,
+.btn {
+    background: #003366;
+    color: #00e5ff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+    background: #00e5ff;
+    color: #001f3f;
+    transform: scale(1.05);
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer {
+    background: #00111a;
+    text-align: center;
+    padding: 2rem;
+    color: #66ffff;
+    font-size: 0.9rem;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+    }
+
+    section {
+        padding: 2rem 5%;
+    }
+}

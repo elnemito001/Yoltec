@@ -1,0 +1,175 @@
+.home-container {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-presentacion {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-presentacion h1 {
+  color: #667eea;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+.info-personal {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.info-personal h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.info-personal p {
+  margin: 10px 0;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.intereses-section {
+  margin-bottom: 25px;
+}
+
+.intereses-section h3 {
+  color: #764ba2;
+  margin-bottom: 15px;
+}
+
+.intereses-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.intereses-section li {
+  background: #e3f2fd;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.mensaje {
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+}
+
+.mensaje p {
+  margin: 0;
+  color: #856404;
+}
+
+@media (max-width: 768px) {
+  .card-presentacion {
+    padding: 20px;
+  }
+
+  .card-presentacion h1 {
+    font-size: 2rem;
+  }
+}
+
+.home-container {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #00A86B 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-presentacion {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-presentacion h1 {
+  color: #667eea;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+.info-personal {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.info-personal h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.info-personal p {
+  margin: 10px 0;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.intereses-section {
+  margin-bottom: 25px;
+}
+
+.intereses-section h3 {
+  color: #764ba2;
+  margin-bottom: 15px;
+}
+
+.intereses-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.intereses-section li {
+  background: #e3f2fd;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.mensaje {
+  background: #fff3cd;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+}
+
+.mensaje p {
+  margin: 0;
+  color: #856404;
+}
+
+@media (max-width: 768px) {
+  .card-presentacion {
+    padding: 20px;
+  }
+
+  .card-presentacion h1 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,48 @@
+<body>
+    <div class="container">
+
+        <!-- Cargando -->
+        <div *ngIf="cargando">
+            <p>Cargando bitácoras...</p>
+        </div>
+
+        <!-- Error -->
+        <div *ngIf="error && !cargando">
+            <p style="color: red;">{{ error }}</p>
+            <button (click)="cargarBitacoras()">Reintentar</button>
+        </div>
+
+        <!-- Tabla de usuarios -->
+        <div *ngIf="!cargando && bitacoras.length > 0">
+            <table border="1" cellpadding="10" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Fecha registro</th>
+                        <th>Clave de cita</th>
+                        <th>Alumno</th>
+                        <th>Doctor</th>
+                        <th>Diagnóstico</th>
+                        <th>Tratamiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bitacora of bitacoras">
+                        <td>{{ bitacora.created_at | date:'short' }}</td>
+                        <td>{{ bitacora.cita?.clave_cita || bitacora.cita_id }}</td>
+                        <td>{{ bitacora.alumno?.nombre }} {{ bitacora.alumno?.apellido }}</td>
+                        <td>{{ bitacora.doctor?.nombre }} {{ bitacora.doctor?.apellido }}</td>
+                        <td>{{ bitacora.diagnostico || 'Sin diagnóstico' }}</td>
+                        <td>{{ bitacora.tratamiento || 'Sin tratamiento' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sin datos -->
+        <div *ngIf="!cargando && bitacoras.length === 0 && !error">
+            <p>No hay registros de bitácora por ahora.</p>
+        </div>
+    </div>
+
+
+</body>

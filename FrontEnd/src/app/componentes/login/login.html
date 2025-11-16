@@ -1,0 +1,90 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Consultorio Virtual</h2>
+    
+    <div class="status" role="status" aria-live="polite">
+      <p class="loading" *ngIf="loading">Validando credenciales...</p>
+      <p class="error" *ngIf="error && !loading">{{ error }}</p>
+    </div>
+    
+    <!-- Tabs para cambiar entre estudiante y doctor -->
+    <div class="tabs">
+      <button 
+        [class.active]="activeTab === 'student'" 
+        (click)="setActiveTab('student')"
+        class="tab-button">
+        Estudiante
+      </button>
+      <button 
+        [class.active]="activeTab === 'doctor'" 
+        (click)="setActiveTab('doctor')"
+        class="tab-button">
+        Doctor
+      </button>
+    </div>
+
+    <!-- Formulario de Estudiante -->
+    <div *ngIf="activeTab === 'student'" class="form-container">
+      <h3>Acceso Estudiantes</h3>
+      <form (ngSubmit)="onStudentLogin()">
+        <div class="form-group">
+          <label for="controlNumber">Número de Control:</label>
+          <input 
+            type="text" 
+            id="controlNumber"
+            [(ngModel)]="studentData.controlNumber" 
+            name="controlNumber"
+            placeholder="Ej: 20601020"
+            required>
+        </div>
+        
+        <div class="form-group">
+          <label for="nip">NIP:</label>
+          <input 
+            type="password" 
+            id="nip"
+            [(ngModel)]="studentData.nip" 
+            name="nip"
+            placeholder="Ingresa tu NIP"
+            required>
+        </div>
+        
+        <button type="submit" class="login-btn" [disabled]="loading">
+          {{ loading ? 'Entrando...' : 'Iniciar Sesión' }}
+        </button>
+      </form>
+    </div>
+
+    <!-- Formulario de Doctor -->
+    <div *ngIf="activeTab === 'doctor'" class="form-container">
+      <h3>Acceso Doctores</h3>
+      <form (ngSubmit)="onDoctorLogin()">
+        <div class="form-group">
+          <label for="username">Usuario:</label>
+          <input 
+            type="text" 
+            id="username"
+            [(ngModel)]="doctorData.username" 
+            name="username"
+            placeholder="Usuario"
+            required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input 
+            type="password" 
+            id="password"
+            [(ngModel)]="doctorData.password" 
+            name="password"
+            placeholder="Contraseña"
+            required>
+        </div>
+        
+        <button type="submit" class="login-btn" [disabled]="loading">
+          {{ loading ? 'Entrando...' : 'Iniciar Sesión' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<section class="perfil-container" *ngIf="!cargando; else cargandoTpl">
+  <header class="perfil-header">
+    <h1>Mi Perfil</h1>
+    <div class="estado" role="status" aria-live="polite">
+      <p class="ok" *ngIf="mensaje">{{ mensaje }}</p>
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </div>
+  </header>
+
+  <div class="perfil-grid">
+    <form class="panel" (ngSubmit)="guardarPerfil()">
+      <h2>Datos personales</h2>
+
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" [(ngModel)]="datosPerfil.nombre" required />
+      </div>
+
+      <div class="campo">
+        <label for="apellido">Apellido</label>
+        <input id="apellido" name="apellido" [(ngModel)]="datosPerfil.apellido" required />
+      </div>
+
+      <div class="campo">
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" [(ngModel)]="datosPerfil.email" required />
+      </div>
+
+      <div class="campo">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" name="telefono" [(ngModel)]="datosPerfil.telefono" placeholder="Opcional" />
+      </div>
+
+      <div class="campo">
+        <label for="fecha_nacimiento">Fecha de nacimiento</label>
+        <input id="fecha_nacimiento" name="fecha_nacimiento" type="date" [(ngModel)]="datosPerfil.fecha_nacimiento" />
+      </div>
+
+      <div class="acciones">
+        <button type="submit" [disabled]="guardando">
+          {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
+        </button>
+      </div>
+    </form>
+
+    <form class="panel" (ngSubmit)="cambiarPassword()">
+      <h2>Cambiar contraseña</h2>
+
+      <div class="campo">
+        <label for="actual">Contraseña actual</label>
+        <input id="actual" name="actual" type="password" [(ngModel)]="formularioPassword.password_actual" required />
+      </div>
+
+      <div class="campo">
+        <label for="nueva">Nueva contraseña</label>
+        <input id="nueva" name="nueva" type="password" [(ngModel)]="formularioPassword.password_nuevo" minlength="8" required />
+      </div>
+
+      <div class="campo">
+        <label for="confirmacion">Confirmar contraseña</label>
+        <input id="confirmacion" name="confirmacion" type="password" [(ngModel)]="formularioPassword.password_nuevo_confirmation" minlength="8" required />
+      </div>
+
+      <div class="acciones">
+        <button type="submit" [disabled]="cambiandoPassword">
+          {{ cambiandoPassword ? 'Actualizando...' : 'Actualizar contraseña' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <section class="resumen" *ngIf="auth.currentUser() as usuario">
+    <h2>Información de sesión</h2>
+    <ul>
+      <li><strong>Nombre:</strong> {{ usuario.nombre }} {{ usuario.apellido }}</li>
+      <li><strong>Correo:</strong> {{ usuario.email }}</li>
+      <li><strong>Rol:</strong> {{ usuario.tipo | titlecase }}</li>
+      <li *ngIf="usuario.numero_control"><strong>Número de control:</strong> {{ usuario.numero_control }}</li>
+      <li *ngIf="usuario.username"><strong>Usuario:</strong> {{ usuario.username }}</li>
+    </ul>
+  </section>
+</section>
+
+<ng-template #cargandoTpl>
+  <div class="cargando">
+    <p>Cargando tu información...</p>
+  </div>
+</ng-template>
