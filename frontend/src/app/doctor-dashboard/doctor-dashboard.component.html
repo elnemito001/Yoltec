@@ -1,0 +1,137 @@
+<div class="doctor-dashboard">
+  <!-- Encabezado -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>Consultorio Médico</h1>
+      <div class="user-info">
+        <span>Bienvenido, {{ doctorName }}</span>
+        <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+    
+    <!-- Navegación -->
+    <nav class="dashboard-nav">
+      <button 
+        [class.active]="activeSection === 'inicio'" 
+        (click)="setActiveSection('inicio')"
+        class="nav-button">
+        Inicio
+      </button>
+      <button 
+        [class.active]="activeSection === 'citas'" 
+        (click)="setActiveSection('citas')"
+        class="nav-button">
+        Citas
+      </button>
+      <button 
+        [class.active]="activeSection === 'bitacoras'" 
+        (click)="setActiveSection('bitacoras')"
+        class="nav-button">
+        Bitácoras
+      </button>
+      <button 
+        [class.active]="activeSection === 'recetas'" 
+        (click)="setActiveSection('recetas')"
+        class="nav-button">
+        Recetas
+      </button>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="dashboard-content">
+    
+    <!-- Sección: Inicio -->
+    <section *ngIf="activeSection === 'inicio'" class="content-section">
+      <div class="welcome-card">
+        <h2>Panel del Doctor</h2>
+        <p>Bienvenido {{ doctorName }}, desde aquí puedes gestionar tus consultas, pacientes y registros médicos.</p>
+        
+        <div class="quick-stats">
+          <div class="stat-card">
+            <h3>Citas del Día</h3>
+            <p>0 citas</p>
+          </div>
+          <div class="stat-card">
+            <h3>Pacientes Atendidos</h3>
+            <p>0 pacientes</p>
+          </div>
+          <div class="stat-card">
+            <h3>Bitácoras Pendientes</h3>
+            <p>0 pendientes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Citas -->
+    <section *ngIf="activeSection === 'citas'" class="content-section">
+      <div class="section-header">
+        <h2>Gestión de Citas</h2>
+        <button class="btn-primary">Agendar Nueva Cita</button>
+      </div>
+      
+      <div class="citas-container">
+        <div class="placeholder-card">
+          <h3>Módulo de Citas para Doctores</h3>
+          <p>Aquí podrás gestionar tu agenda de consultas médicas.</p>
+          <p><strong>Funcionalidades próximas:</strong></p>
+          <ul>
+            <li>📅 Ver agenda semanal/diaria</li>
+            <li>👥 Agendar citas para pacientes</li>
+            <li>🔄 Reagendar consultas</li>
+            <li>❌ Cancelar citas</li>
+            <li>👀 Ver historial de consultas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Bitácoras -->
+    <section *ngIf="activeSection === 'bitacoras'" class="content-section">
+      <div class="section-header">
+        <h2>Bitácoras Médicas</h2>
+        <button class="btn-primary">Nueva Bitácora</button>
+      </div>
+      
+      <div class="bitacoras-container">
+        <div class="placeholder-card">
+          <h3>Registro de Consultas Médicas</h3>
+          <p>Aquí podrás registrar y consultar las bitácoras de tus pacientes.</p>
+          <p><strong>Funcionalidades próximas:</strong></p>
+          <ul>
+            <li>📝 Crear nueva bitácora por consulta</li>
+            <li>✏️ Editar registros médicos existentes</li>
+            <li>👁️ Visualizar historial de pacientes</li>
+            <li>🔍 Buscar bitácoras por paciente</li>
+            <li>📋 Registrar síntomas y diagnósticos</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Recetas -->
+    <section *ngIf="activeSection === 'recetas'" class="content-section">
+      <div class="section-header">
+        <h2>Gestión de Recetas</h2>
+        <button class="btn-primary">Nueva Receta</button>
+      </div>
+      
+      <div class="recetas-container">
+        <div class="placeholder-card">
+          <h3>Sistema de Recetas Médicas</h3>
+          <p>Aquí podrás generar y gestionar recetas médicas para tus pacientes.</p>
+          <p><strong>Funcionalidades próximas:</strong></p>
+          <ul>
+            <li>💊 Generar nuevas recetas</li>
+            <li>📄 Formato imprimible profesional</li>
+            <li>📋 Historial de recetas expedidas</li>
+            <li>👥 Recetas por paciente</li>
+            <li>🖨️ Impresión directa de recetas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>

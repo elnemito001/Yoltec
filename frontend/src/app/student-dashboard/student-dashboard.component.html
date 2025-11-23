@@ -1,0 +1,102 @@
+<div class="student-dashboard">
+  <!-- Encabezado -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>Consultorio Médico</h1>
+      <div class="user-info">
+  <span>Bienvenido, {{ studentName }}</span>
+  <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+</div>
+    </div>
+    
+    <!-- Navegación -->
+    <nav class="dashboard-nav">
+      <button 
+        [class.active]="activeSection === 'inicio'" 
+        (click)="setActiveSection('inicio')"
+        class="nav-button">
+        Inicio
+      </button>
+      <button 
+        [class.active]="activeSection === 'citas'" 
+        (click)="setActiveSection('citas')"
+        class="nav-button">
+        Citas
+      </button>
+      <button 
+        [class.active]="activeSection === 'bitacora'" 
+        (click)="setActiveSection('bitacora')"
+        class="nav-button">
+        Bitácora
+      </button>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="dashboard-content">
+    
+    <!-- Sección: Inicio -->
+    <section *ngIf="activeSection === 'inicio'" class="content-section">
+      <div class="welcome-card">
+        <h2>Bienvenido al Sistema del Consultorio</h2>
+        <p>Hola {{ studentName }}, aquí puedes gestionar tus citas médicas y revisar tu historial.</p>
+        
+        <div class="quick-stats">
+          <div class="stat-card">
+            <h3>Próxima Cita</h3>
+            <p>No tienes citas programadas</p>
+          </div>
+          <div class="stat-card">
+            <h3>Citas Totales</h3>
+            <p>0 citas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Citas -->
+    <section *ngIf="activeSection === 'citas'" class="content-section">
+      <div class="section-header">
+        <h2>Gestión de Citas</h2>
+        <button class="btn-primary">Agendar Nueva Cita</button>
+      </div>
+      
+      <div class="citas-container">
+        <div class="placeholder-card">
+          <h3>Módulo de Citas</h3>
+          <p>Aquí podrás agendar, ver y cancelar tus citas médicas.</p>
+          <p><strong>Funcionalidades próximas:</strong></p>
+          <ul>
+            <li>📅 Agendar nueva cita</li>
+            <li>👁️ Ver citas programadas</li>
+            <li>❌ Cancelar citas</li>
+            <li>📋 Historial de citas anteriores</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Bitácora -->
+    <section *ngIf="activeSection === 'bitacora'" class="content-section">
+      <div class="section-header">
+        <h2>Bitácora Médica</h2>
+      </div>
+      
+      <div class="bitacora-container">
+        <div class="placeholder-card">
+          <h3>Historial Médico</h3>
+          <p>Aquí podrás consultar tu información médica y registros de consultas.</p>
+          <p><strong>Información disponible:</strong></p>
+          <ul>
+            <li>📅 Fechas de consultas anteriores</li>
+            <li>⏰ Horarios de atención</li>
+            <li>👨‍⚕️ Doctores que te han atendido</li>
+            <li>💊 Recetas expedidas</li>
+            <li>📝 Diagnósticos y tratamientos</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
