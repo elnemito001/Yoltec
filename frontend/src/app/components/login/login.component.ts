@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { catchError, finalize, takeUntil } from 'rxjs/operators';
 import { Subject, of } from 'rxjs';
 
@@ -15,11 +15,11 @@ import { Subject, of } from 'rxjs';
 })
 export class LoginComponent implements OnDestroy {
   private destroy$ = new Subject<void>();
-  
+
   activeTab: string = 'student';
   isLoading = false;
   errorMessage: string | null = null;
-  
+
   studentData = {
     identificador: '',
     password: ''
@@ -33,7 +33,7 @@ export class LoginComponent implements OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   onStudentLogin() {
     this.login(this.studentData.identificador, this.studentData.password, 'alumno');
@@ -46,7 +46,7 @@ export class LoginComponent implements OnDestroy {
   private login(identificador: string, password: string, expectedRole: 'alumno' | 'doctor') {
     this.isLoading = true;
     this.errorMessage = null;
-    
+
     this.authService.login(identificador, password, expectedRole)
       .pipe(
         takeUntil(this.destroy$),

@@ -4,10 +4,10 @@ import { RouterModule, Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Subject, of } from 'rxjs';
 import { catchError, finalize, takeUntil } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
-import { Cita, CitaService, CreateCitaPayload, AvailabilityStatus, CitaAvailabilityDay } from '../services/cita.service';
-import { Bitacora, BitacoraService } from '../services/bitacora.service';
-import { Receta, RecetaService } from '../services/receta.service';
+import { AuthService } from '../../services/auth.service';
+import { Cita, CitaService, CreateCitaPayload, AvailabilityStatus, CitaAvailabilityDay } from '../../services/cita.service';
+import { Bitacora, BitacoraService } from '../../services/bitacora.service';
+import { Receta, RecetaService } from '../../services/receta.service';
 
 type CalendarAvailability = 'none' | AvailabilityStatus;
 
