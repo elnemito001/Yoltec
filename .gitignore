@@ -1,1 +1,31 @@
+# ENV
+.env
+.env.*
+!.env.example
+
+# Python
 venv/
+__pycache__/
+*.pyc
+
+# Node / Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Laravel
+backend/vendor/
+backend/node_modules/
+backend/storage/*.key
+backend/bootstrap/cache/*.php
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

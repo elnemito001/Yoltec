@@ -2,107 +2,48 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    /** @use HasFactory<UserFactory> */
+    use HasFactory, Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
     protected $fillable = [
-        'numero_control',
-        'username',
-        'nombre',
-        'apellido',
+        'name',
         'email',
         'password',
-        'tipo',
-        'es_admin',        // Nuevo campo para rol administrador
-        'telefono',
-        'fecha_nacimiento',
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'fecha_nacimiento' => 'date',
-        'es_admin' => 'boolean',
-    ];
-
-    // Relaciones
-    public function citasComoAlumno()
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
     {
-        return $this->hasMany(Cita::class, 'alumno_id');
-    }
-
-    public function citasComoDoctor()
-    {
-        return $this->hasMany(Cita::class, 'doctor_id');
-    }
-
-    public function bitacorasComoAlumno()
-    {
-        return $this->hasMany(Bitacora::class, 'alumno_id');
-    }
-
-    public function bitacorasComoDoctor()
-    {
-        return $this->hasMany(Bitacora::class, 'doctor_id');
-    }
-
-    public function recetasComoAlumno()
-    {
-        return $this->hasMany(Receta::class, 'alumno_id');
-    }
-
-    public function recetasComoDoctor()
-    {
-        return $this->hasMany(Receta::class, 'doctor_id');
-    }
-
-    // Helper methods
-    public function esAlumno()
-    {
-        return $this->tipo === 'alumno';
-    }
-
-    public function esDoctor()
-    {
-        return $this->tipo === 'doctor';
-    }
-
-    public function esAdmin()
-    {
-        return $this->es_admin === true;
-    }
-
-    public function tieneAccesoAdmin()
-    {
-        return $this->esAdmin() || $this->esDoctor();
-    }
-
-    public function puedeSubirDocumentos()
-    {
-        return $this->esAdmin() || $this->esDoctor();
-    }
-
-    public function puedeValidarDiagnosticos()
-    {
-        return $this->esAdmin() || $this->esDoctor();
-    }
-
-    public function getRolLegibleAttribute()
-    {
-        if ($this->esAdmin()) return 'Administrador';
-        if ($this->esDoctor()) return 'Doctor';
-        if ($this->esAlumno()) return 'Paciente';
-        return 'Usuario';
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }
